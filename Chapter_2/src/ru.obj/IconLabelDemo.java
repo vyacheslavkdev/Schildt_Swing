@@ -11,10 +11,13 @@ public class IconLabelDemo {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(350,350);
 
-        URL imgUrl =  this.getClass().getResource("img/icon.jpg");
-        ImageIcon myIcon = new ImageIcon(imgUrl);
+        ImageIcon myIcon = new ImageIcon(this.getClass().getResource("img/icon.jpg"));
 
         JLabel lblIcon = new JLabel(myIcon);
+
+        lblIcon.setText("text bottom of icon");
+        lblIcon.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblIcon.setVerticalTextPosition(SwingConstants.BOTTOM);
 
         JLabel lblIconTxt = new JLabel("default icon and text positon",myIcon,SwingConstants.CENTER);
 
@@ -22,8 +25,9 @@ public class IconLabelDemo {
         lblLeftTextIcon.setHorizontalTextPosition(SwingConstants.LEFT);
 
         JLabel lblTopTextIcon = new JLabel("text over icon", myIcon, SwingConstants.CENTER);
-        lblTopTextIcon.setVerticalTextPosition(SwingConstants.TOP);
         lblTopTextIcon.setHorizontalTextPosition(SwingConstants.CENTER);
+        lblTopTextIcon.setVerticalTextPosition(SwingConstants.TOP);
+
 
         frame.add(lblIcon);
         frame.add(lblIconTxt);
