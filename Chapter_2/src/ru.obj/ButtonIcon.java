@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ButtonIcon implements ActionListener {
+public class ButtonIcon {
     JLabel lbl;
     JButton btnFirst;
     JButton btnSecond;
@@ -21,7 +21,9 @@ public class ButtonIcon implements ActionListener {
 
         lbl = new JLabel("Press a button");
 
-        btnFirst = new JButton("First", myIcon);
+        btnFirst = new JButton("<html>Press<br>me", myIcon);
+        btnFirst.setActionCommand("First");
+        btnFirst.setMnemonic('f');
         btnFirst.setRolloverIcon(roIcon);
         btnFirst.setPressedIcon(pIcon);
         btnFirst.setDisabledIcon(myDisIcon);
@@ -31,30 +33,32 @@ public class ButtonIcon implements ActionListener {
         btnSecond.setPressedIcon(pIcon);
         btnSecond.setDisabledIcon(myDisIcon);
 
-        btnFirst.addActionListener(this);
-        btnSecond.addActionListener(this);
+        btnFirst.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lbl.setText("First button was presed");
+                if(btnSecond.isEnabled()){
+                    btnSecond.setEnabled(false);
+                    lbl.setText("Second button disabled");
+                } else {
+                    btnSecond.setEnabled(true);
+                    lbl.setText("Second button enabled");
+                }
+            }
+        });
+        btnSecond.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                lbl.setText("Second button was pressed");
+            }
+        });
 
         frame.add(btnFirst);
         frame.add(btnSecond);
+        frame.getRootPane().setDefaultButton(btnSecond);
         frame.add(lbl);
 
         frame.setVisible(true);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getActionCommand().equals("First")){
-            lbl.setText("First button was presed");
-            if(btnSecond.isEnabled()){
-                btnSecond.setEnabled(false);
-                lbl.setText("Second button disabled");
-            } else {
-                btnSecond.setEnabled(true);
-                lbl.setText("Second button enabled");
-                }
-        } else{
-            lbl.setText("Second button was pressed");
-        }
     }
 
     public static void main(String[] args) {
