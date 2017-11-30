@@ -1,8 +1,7 @@
-import oracle.jrockit.jfr.JFR;
 
 import javax.swing.*;
 import java.awt.*;
-import java.net.URL;
+
 
 public class IconLabelDemo {
     IconLabelDemo(){
