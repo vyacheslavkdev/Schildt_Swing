@@ -69,7 +69,6 @@ public class Phonebook {
         frame.add(rbEndsWith);
 
         frame.setVisible(true);
-
     }
 
     private String lookupName(String text) {
